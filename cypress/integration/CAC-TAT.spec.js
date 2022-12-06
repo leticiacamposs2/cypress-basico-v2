@@ -308,4 +308,17 @@ describe('Central de Atendimento ao Cliente TAT', () => {
           })       
     })
 
+    it('encontrar o gato', () => {
+        cy.get('#cat')
+            .should('not.be.visible')
+            .invoke('show')
+            .should('be.visible')
+        
+        cy.get('#title')
+            .invoke('text', 'CAT TAT')
+        
+        cy.get('#subtitle')
+            .invoke('text', 'EU ❤️ GATOS')
+    })
+
 })
