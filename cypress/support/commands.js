@@ -1,25 +1,34 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+const firstName = 'Leticia';
+const lastName = 'Campos';
+const email = 'le@teste.com.br';
+const textArea = 'Simulação de testes cypress';
+const phone = '00000000';
+const inputFirstName = '#firstName';
+const inputLastName = '#lastName';
+const inputEmail = '#email';
+const inputTextArea = '#open-text-area';
+
+Cypress.Commands.add('fillMandatoryFieldsAndSubmit', () => {
+    cy.get(inputFirstName)
+        .type(firstName)
+        .should('have.value', firstName)
+        .click()
+
+    cy.get(inputLastName)
+        .type(lastName)
+        .should('have.value', lastName)
+        .click()
+
+    cy.get(inputEmail)
+        .type(email)
+        .should('have.value', email)
+        .click()
+
+    cy.get(inputTextArea)
+        .type(textArea)
+        .should('have.value', textArea)
+        .click()
+
+    cy.contains('button', 'Enviar')
+        .click()
+})
